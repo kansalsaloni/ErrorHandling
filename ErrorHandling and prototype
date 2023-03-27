@@ -1,0 +1,199 @@
+Ques=> Type Conversion
+
+function convertToNumber(str) {
+  let num = Number(str);
+  if (isNaN(num)) {
+    return "Invalid number";
+  } else {
+    return num;
+  }
+}
+
+let inputString = "123";
+let result = convertToNumber(inputString);
+console.log(result); // Output: 123
+
+let invalidInput = "abc";
+result = convertToNumber(invalidInput);
+console.log(result); // Output: "Invalid number"
+
+#######################################################################################
+
+Ques=>Building Robust Function javascript
+
+function getPerson(obj) {
+  if (typeof obj !== "object" || !obj.hasOwnProperty("name") || !obj.hasOwnProperty("age")) {
+    throw new Error("Invalid parameter type");
+  }
+  return `Name: ${obj.name}, Age: ${obj.age}`;
+}
+let person = { name: "John", age: 30 };
+try {
+  let result = getPerson(person);
+  console.log(result); // Output: "Name: John, Age: 30"
+} catch (error) {
+  console.log(error.message); // Output: "Invalid parameter type"
+}
+
+let invalidInput = "abc";
+try {
+  let result = getPerson(invalidInput);
+  console.log(result);
+} catch (error) {
+  console.log(error.message); // Output: "Invalid parameter type"
+}
+#######################################################################################
+
+
+Ques=> Car description
+
+class Car {
+  constructor(company, model, year) {
+    this.company = company;
+    this.model = model;
+    this.year = year;
+  }
+
+  getDescription() {
+    return `This is a ${this.year} ${this.company} ${this.model}`;
+  }
+}
+let myCar = new Car("Tesla", "Model S", 2022);
+console.log(myCar.getDescription()); // Output: "This is a 2022 Tesla Model S"
+
+#######################################################################################
+
+
+Ques=> Employee class challenge
+
+class Employee {
+  constructor(name, position, salary) {
+    this.name = name;
+    this.position = position;
+    this.salary = salary;
+  }
+
+  getSalary() {
+    return this.salary;
+  }
+}
+let employee1 = new Employee("John Doe", "Manager", 5000);
+console.log(employee1.getSalary()); // Output: 5000
+
+
+#######################################################################################
+
+
+Ques=> Implement person class with default value
+
+class Person {
+  constructor(name = "Unknown", age = 0) {
+    this.name = name;
+    this.age = age;
+  }
+
+  getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}`;
+  }
+}
+let person1 = new Person("John Doe", 30);
+console.log(person1.getDetails()); // Output: "Name: John Doe, Age: 30"
+
+let person2 = new Person();
+console.log(person2.getDetails()); // Output: "Name: Unknown, Age: 0"
+
+
+#######################################################################################
+
+Ques=> Using Static Method to Add Two Numbers with Calculator Class
+
+class Calculator {
+  static add(num1, num2) {
+    return num1 + num2;
+  }
+}
+console.log(Calculator.add(2, 3)); // Output: 5
+
+
+#######################################################################################
+
+Ques=> Password Checker
+class User {
+  constructor(username, password) {
+    this.username = username;
+    this._password = password;
+  }
+
+  get password() {
+    return this._password.replace(/./g, '*');
+  }
+
+  set password(newPassword) {
+    if (newPassword.length >= 8 && /[0-9]/.test(newPassword) && /[A-Z]/.test(newPassword)) {
+      this._password = newPassword;
+    } else {
+      console.error('Invalid password. Password must be at least 8 characters long and contain at least one number and one uppercase letter.');
+    }
+  }
+}
+let user1 = new User('johndoe', 'password123');
+console.log(user1.password); 
+user1.password = 'newpassword';
+console.log(user1.password);
+user1.password = 'newpassword123';
+console.log(user1.password); 
+
+#######################################################################################
+
+Ques=> Adding a Method to a Prototype
+// Create the Student prototype
+let Student = {
+  name: "",
+  printDetails: function() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+};
+
+// Create an instance of the Student object with the name "Mithun"
+let student1 = Object.create(Student);
+student1.name = "Mithun";
+
+// Call the printDetails method on the student object
+student1.printDetails(); // Output: Hello, my name is Mithun
+
+#######################################################################################
+Ques=> Check the presence using closures
+
+function numberChecker(numbers) {
+  return function(num) {
+    return numbers.includes(num);
+  }
+}
+
+let numbersArray = [1, 2, 3, 4, 5];
+
+let checkNumber = numberChecker(numbersArray);
+
+console.log(checkNumber(3)); // Output: true
+console.log(checkNumber(6)); // Output: false
+
+#######################################################################################
+
+Ques=> Filter by Category
+
+function filterByCategory(products) {
+  return function(category) {
+    return products.filter(product => product.category === category);
+  }
+}
+let productsArray = [  { name: 'Product A', category: 'electronics' },  { name: 'Product B', category: 'furniture' },  { name: 'Product C', category: 'electronics' },  { name: 'Product D', category: 'clothing' }];
+
+let filterByCategoryFunc = filterByCategory(productsArray);
+
+console.log(filterByCategoryFunc('electronics')); 
+// Output: [{ name: 'Product A', category: 'electronics' }, { name: 'Product C', category: 'electronics' }]
+
+console.log(filterByCategoryFunc('furniture')); 
+// Output: [{ name: 'Product B', category: 'furniture' }]
+
+#######################################################################################
